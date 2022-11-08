@@ -3,7 +3,7 @@
       "esModuleInterop": true
     },
     "files": [
-        // "functions.test.ts",
+        "functions.test.ts",
         "duelDuo.test.ts"
     ]
 }

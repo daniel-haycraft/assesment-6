@@ -16,13 +16,13 @@ afterAll(async () => {
 test('Title shows up when page loads', async () => {
     const title = await driver.findElement(By.id('title'))
     const displayed = await title.isDisplayed()
-    expect( displayed).toBeTruthy();
+    expect(displayed).toBeTruthy();
 
     
     await driver.sleep(3000);
 })
 
-// test('adds one to winners or lossers', async () => {
+test('adds one to winners or lossers', async () => {
     
-//     await driver.sleep(3000);
-// })
+    await driver.sleep(3000);
+})

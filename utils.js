@@ -1,12 +1,14 @@
-function shuffleArray(array) {
-    let arrCopy = [...array]
-    for (let i = arrCopy.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arrCopy[i], arrCopy[j]] = [arrCopy[j], arrCopy[i]];
-    }
-    return arrCopy
-}
+const { bots } = require("./data");
 
+function shuffleArray(arr) {
+   
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr
+}
+// console.log(shuffleArray(bots))
 module.exports = {
     shuffleArray
 }
