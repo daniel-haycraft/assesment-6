@@ -11,13 +11,15 @@ app.use(express.json())
 // include and initialize the rollbar library with your access token
 var Rollbar = require('rollbar')
 var rollbar = new Rollbar({
-  accessToken: '27e7cf65072145639ea3da78c19c09a5',
+  accessToken: '92927deef9c74984a5be26724e6dede0',
   captureUncaught: true,
   captureUnhandledRejections: true,
 })
 
 // record a generic message and send it to Rollbar
 rollbar.log('Hello world!')
+
+// record a generic message and send it to Rollbar
 // using these three middlewars server all three files in public folder
 // it makes sense bbecause the html is already being served
 // but the two css and js need to be accessed still
@@ -31,10 +33,10 @@ app.use('/styles', express.static(path.join(__dirname, '/public/index.css')))
 app.get('/api/robots', (req, res) => {
     try {
         // botsArr caught, not descructured ass "botsArr instead just as bots"
-        Rollbar.info("succesfully got all robots")
+        rollbar.info("succesfully got all robots")
         res.status(200).send(bots)
     } catch (error) {
-        Rollbar.warning("couldn't get bots... check app.get line 31 brother")
+        rollbar.warning("couldn't get bots... check app.get line 31 brother")
         console.log('ERROR GETTING BOTS', error)
         res.sendStatus(400)
     }
@@ -45,10 +47,10 @@ app.get('/api/robots/five', (req, res) => {
         let shuffled = shuffleArray(bots)
         let choices = shuffled.slice(0, 5)
         let compDuo = shuffled.slice(6, 8)
-        Rollbar.info("suffled 5 random choices for user")
-        res.status(200).send({choices, compDuo})
+        rollbar.info("suffled 5 random choices for user")
+        res.status(200).send({ choices, compDuo })
     } catch (error) {
-        Rollbar.warning("Bots unavailable/check api/ line 43")
+        rollbar.warning("Bots unavailable/check api/ line 43")
         console.log('ERROR GETTING FIVE BOTS', error)
         res.sendStatus(400)
     }
@@ -76,7 +78,7 @@ app.post('/api/duel', (req, res) => {
             playerRecord.losses++
             res.status(200).send('You lost!')
         } else {
-            playerRecord.losses++
+            playerRecord.wins++
             res.status(200).send('You won!')
         }
     } catch (error) {
